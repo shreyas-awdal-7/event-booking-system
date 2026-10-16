@@ -4,6 +4,7 @@ import toast from 'react-hot-toast'
 import api, { formatDate, formatPrice, getErrorMessage } from '../api/client'
 import { useAuth } from '../context/AuthContext'
 import Loader from '../components/Loader'
+import { sampleEvents } from '../api/sampleEvents'
 
 export default function EventDetails() {
   const { id } = useParams()
@@ -20,6 +21,12 @@ export default function EventDetails() {
       .get(`/events/${id}`)
       .then((res) => setEvent(res.data))
       .catch((err) => {
+        // Backend na mile toh demo event dikhao
+        const demo = sampleEvents.find((e) => String(e.id) === id)
+        if (demo && !err.response?.status) {
+          setEvent(demo)
+          return
+        }
         toast.error(getErrorMessage(err))
         navigate('/')
       })
