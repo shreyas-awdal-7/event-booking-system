@@ -10,9 +10,15 @@ api.interceptors.request.use((config) => {
   return config
 })
 
+// Backend na mile toh server JSON ki jagah index.html bhej deta hai. Use error maano, crash mat hone do.
 // Token expire ho jaye toh logout karke login page pe bhejo
 api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    if (typeof res.data === 'string' && res.data.trimStart().startsWith('<')) {
+      return Promise.reject({ response: { data: { message: 'Backend server is not reachable. Please try again later.' } } })
+    }
+    return res
+  },
   (err) => {
     if (err.response?.status === 401 && localStorage.getItem('token')) {
       localStorage.removeItem('token')
