@@ -166,4 +166,4 @@ cd event-booking-system
 ---
 
 ## 👤 Author
-**YOUR NAME** · [LinkedIn](https://linkedin.com/in/your-profile) · [GitHub](https://github.com/your-username)
+**Shreyas Awdhal** · [GitHub](https://github.com/shreyas-awdal-7)
