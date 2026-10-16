@@ -1,0 +1,19 @@
+# STS / Eclipse
+.metadata/
+.settings/
+.classpath
+.project
+.factorypath
+
+# Backend build
+target/
+
+# Frontend
+node_modules/
+dist/
+
+# Secrets & logs
+.env
+.env.local
+secret.properties
+*.log
